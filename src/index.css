@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Exact colors from original site (Elementor global palette) */
+  --primary: #000E5B;        /* e-global-color-primary - deep navy */
+  --secondary: #F15B29;      /* e-global-color-secondary - orange accent */
+  --accent: #005894;         /* e-global-color-accent */
+  --navy-dark: #15222D;      /* section backgrounds / read-more underline */
+  --navy-mid: #1F3141;       /* card title bar background */
+  --text-color: #495244;     /* e-global-color-text - body copy */
+  --heading: #1B1B1B;        /* heading text on white */
+  --light: #FFFFFF;
+  --light-gray: #F1F1F1;
+  --font-main: 'Raleway', sans-serif;
+  --font-heading: 'Raleway', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

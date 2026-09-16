@@ -1,0 +1,130 @@
+/* ===== Hero: background video + bottom-anchored overlap image ===== */
+.hero {
+  position: relative;
+  height: 453px;          /* original spacer height (desktop) */
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Plant image overlapping the bottom of the video (original: bottom center, cover).
+   Slightly taller than the section's lower half so it visibly overlaps. */
+.hero-overlap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== Intro text — BELOW the hero, on white ===== */
+.hero-text-section {
+  background: #FFFFFF;
+  padding: 30px 0 30px;   /* original section padding */
+}
+
+.hero-text-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--heading);   /* #1B1B1B */
+  text-align: center;
+  line-height: 1.4;
+  margin: 0 0 11px;
+}
+
+.hero-text-desc {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--heading);   /* #1B1B1B */
+  text-align: center;
+  line-height: 25px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ===== Navy band with section title ===== */
+.products-band {
+  background: var(--navy-mid);   /* #1F3141 */
+  padding: 18px 0;
+}
+
+.products-band-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* ===== Products grid — light gray background like original ===== */
+.products-section {
+  background: var(--light-gray);   /* #F1F1F1 */
+  padding: 15px 0 40px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .hero {
+    height: 380px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    height: 300px;   /* original mobile spacer height */
+  }
+
+  .hero-overlap {
+    height: 45%;
+  }
+
+  .hero-text-title {
+    font-size: 20px;
+  }
+
+  .hero-text-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 0 15px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .products-band-title {
+    font-size: 18px;
+  }
+}

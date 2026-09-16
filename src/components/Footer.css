@@ -1,0 +1,81 @@
+/* Short black footer bar, like the original */
+.footer {
+  background: #000000;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-copyright {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 5px;
+}
+
+.footer-company {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+}
+
+.footer-link {
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--secondary);
+}
+
+.footer-email {
+  display: block;
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.footer-email:hover {
+  color: var(--secondary);
+}
+
+@media (max-width: 640px) {
+  .footer-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    text-align: center;
+  }
+}

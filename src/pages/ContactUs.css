@@ -1,0 +1,194 @@
+/* ===== Navy title band (original: #1F3141, padding 15px 0) ===== */
+.contact-title-band {
+  background: var(--navy-mid);
+  padding: 15px 0;
+}
+
+.contact-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0;
+}
+
+/* ===== Info section: black bg, map + details (original: #000, padding 30px 0) ===== */
+.contact-info-section {
+  background: #000000;
+  padding: 30px 0;
+}
+
+.contact-info-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+}
+
+.contact-map-col {
+  width: 50%;
+  padding: 10px;
+}
+
+.contact-map-col iframe {
+  display: block;
+  width: 100%;
+  height: 350px;
+  border: 0;
+}
+
+.contact-details-col {
+  width: 50%;
+  padding: 10px 10px 10px 30px;
+}
+
+/* Pale yellow h6 headings — exact original (#FCF9B3) */
+.contact-heading {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 400;
+  color: #FCF9B3;
+  margin: 0 0 10px;
+}
+
+.contact-text {
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.contact-email {
+  color: #FFFFFF;
+  transition: color 0.2s;
+}
+
+.contact-email:hover {
+  color: var(--secondary);
+}
+
+.contact-spacer {
+  height: 40px;
+}
+
+/* Square social button like Elementor's default stacked style */
+.contact-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--accent);   /* #005894, e-global-color-accent */
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.contact-social-btn:hover {
+  background: var(--secondary);
+}
+
+/* ===== Form section (original: black bg, navy panel) ===== */
+.contact-form-section {
+  background: #000000;
+  padding: 0 20px 60px;
+}
+
+.contact-form-panel {
+  max-width: 1140px;
+  margin: 0 auto;
+  background: var(--navy-mid);   /* #1F3141 */
+  padding: 40px 40px;
+}
+
+.contact-form-success {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-field {
+  flex: 1;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0);   /* transparent like the original */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  font-size: 15px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.3s;
+  border-radius: 0;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #FFFFFF;
+}
+
+.form-submit {
+  display: inline-block;
+  background: var(--accent);     /* e-global-color-accent #005894 */
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 0;
+}
+
+.form-submit:hover {
+  background: var(--secondary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .contact-info-inner {
+    flex-direction: column;
+  }
+
+  .contact-map-col,
+  .contact-details-col {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-form-panel {
+    padding: 25px 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
