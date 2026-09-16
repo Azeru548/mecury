@@ -10,8 +10,8 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
-      {/* Hero — background video with the plant image overlapping its bottom edge.
-          No filter, no text — matches the original. */}
+      {/* Hero — video as background, transparent plant PNG overlaid at bottom.
+          No filter, no text. */}
       <section className="hero">
         <video
           className="hero-video"
@@ -25,7 +25,7 @@ export default function HomePage() {
         </video>
         <img
           className="hero-overlap"
-          src="/images/hero-overlap.jpeg"
+          src="/images/hero-plant.png"
           alt=""
           aria-hidden="true"
         />

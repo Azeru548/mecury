@@ -1,36 +1,34 @@
-/* ===== Hero: background video + bottom-anchored overlap image ===== */
+/* ===== Hero: video background + transparent PNG overlaid at bottom ===== */
 .hero {
   position: relative;
   height: 453px;          /* original spacer height (desktop) */
   overflow: hidden;
-  background: #000;
+  background: transparent;
 }
 
 .hero-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   z-index: 0;
+  filter: none;
 }
 
-/* Plant image overlapping the bottom of the video (original: bottom center, cover).
-   Slightly taller than the section's lower half so it visibly overlaps. */
+/* Transparent plant cutout sitting on top of the video, edge-to-edge.
+   Same width as video — cover + bottom anchored so it always touches both ends. */
 .hero-overlap {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 55%;
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center bottom;
   z-index: 1;
   pointer-events: none;
+  filter: none;
 }
 
 /* ===== Intro text — BELOW the hero, on white ===== */
@@ -107,7 +105,8 @@
   }
 
   .hero-overlap {
-    height: 45%;
+    /* keep edge-to-edge on mobile, just shift focal point slightly */
+    object-position: center bottom;
   }
 
   .hero-text-title {
