@@ -15,10 +15,12 @@ function buildBlocks(product) {
   return blocks
 }
 
-function ProductBlock({ label, items }) {
+function ProductBlock({ label, items, headingColor }) {
   return (
     <>
-      <h5 className="product-h5">{label}</h5>
+      <h5 className="product-h5" style={headingColor ? { color: headingColor } : undefined}>
+        {label}
+      </h5>
       <ul className="product-list">
         {items.map(item => (
           <li key={item}>{item}</li>
@@ -50,6 +52,7 @@ export default function ProductPage() {
   const blocks = buildBlocks(product)
   const docGroups = product.docGroups || []
   const imageRows = product.imageRows || []
+  const headingColor = product.headingColor
 
   return (
     <div className="product-page">
@@ -64,7 +67,52 @@ export default function ProductPage() {
           puts the remaining blocks in dotted-border columns (see BODY_LAYOUTS). */}
       <section className="product-body" style={{ padding: layout.sectionPad }}>
         <div className="container">
-          {layout.mainWidth ? (
+          {layout.leftWidth ? (
+            /* Split variant: 50% text column beside a 50% media column */
+            <div className="product-split-2" style={{ padding: layout.colPad }}>
+              <div className="product-split-col" style={{ width: layout.leftWidth }}>
+                <div className="product-block" style={{ padding: layout.overviewPad }}>
+                  <h5 className="product-h5" style={headingColor ? { color: headingColor } : undefined}>
+                    Overview
+                  </h5>
+                  <p className="product-overview">{product.overview}</p>
+                </div>
+                {blocks.map(block => (
+                  <div className="product-block" style={{ padding: layout.blockPad }} key={block.key}>
+                    <ProductBlock {...block} headingColor={headingColor} />
+                  </div>
+                ))}
+              </div>
+
+              <div className="product-split-col" style={{ width: layout.rightWidth }}>
+                {product.driveDocs.length > 0 && (
+                  <div className="product-docgroup-row">
+                    {product.driveDocs.map(docId => (
+                      <div className="product-docgroup-cell" key={docId}>
+                        <iframe
+                          src={`https://drive.google.com/file/d/${docId}/preview`}
+                          title={`${product.title} video`}
+                          allow="autoplay"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {product.bandImages && product.bandImages.length > 0 && (
+                  <div className="product-bandimages-row">
+                    {product.bandImages.map(src => (
+                      <div
+                        key={src}
+                        className="product-bandimage"
+                        style={{ height: product.bandImagesHeight, backgroundImage: `url(${src})` }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : layout.mainWidth ? (
             /* Sidebar variant: 70% main column + 29.917% sub-menu sidebar */
             <div className="product-split">
               <div className="product-main-col" style={{ width: layout.mainWidth, padding: layout.mainPad }}>
@@ -187,7 +235,7 @@ export default function ProductPage() {
         </section>
       )}
 
-      {docGroups.length === 0 && product.driveDocs.length > 0 && (
+      {!layout.leftWidth && docGroups.length === 0 && product.driveDocs.length > 0 && (
         <section className="product-docs-section">
           <div className="container">
             <div className="product-docgroup-row">
@@ -206,8 +254,9 @@ export default function ProductPage() {
       )}
 
       {/* Background-image bands (CSS backgrounds on the original, so they never
-          appear as <img> in the markup) */}
-      {product.bandImages && product.bandImages.length > 0 && (
+          appear as <img> in the markup). Only for layouts that don't already
+          place them inside a column. */}
+      {!layout.leftWidth && product.bandImages && product.bandImages.length > 0 && (
         <section className="product-bandimages">
           <div className="container">
             <div className="product-bandimages-row">

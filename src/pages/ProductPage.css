@@ -91,6 +91,18 @@
   margin-bottom: 0;
 }
 
+/* ===== Split layout (Modular Process Skid) =====
+   Original: col-100 with padding 0 30px 11px 0 wrapping two col-50 columns. */
+.product-split-2 {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 30px 11px 0;
+}
+
+.product-split-col {
+  padding: 0 10px;   /* elementor-column-gap-default */
+}
+
 /* ===== Sidebar layout (Structural Fabrication) =====
    Original: 70% main column (padding 0 30px 30px 0) beside a 29.917%
    sidebar (padding 0 30px 30px 30px) that is hidden on mobile. */
@@ -213,6 +225,7 @@
 
 .product-bandimage {
   width: 50%;
+  padding: 0 10px;
   margin-right: 20px;
   background-position: center center;
   background-repeat: no-repeat;
@@ -426,6 +439,16 @@
   .product-bandimage {
     width: 100%;
     margin-right: 0;
+  }
+
+  /* Original mobile: the col-100 wrapper drops its padding */
+  .product-split-2 {
+    flex-direction: column;
+    padding: 0 !important;
+  }
+
+  .product-split-col {
+    width: 100% !important;
   }
 
   .product-page-title {

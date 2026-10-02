@@ -9,6 +9,16 @@ const BASE = 'https://aef.dibkopetromax.com/wp-content/uploads/2026/07'
 //  'sidebar' — 70% main column (text + full-width image band) beside a
 //              29.917% sidebar holding the "Products and Services" sub-menu
 export const BODY_LAYOUTS = {
+  // Two 50/50 columns: text on the left, video + a pair of background-image
+  // bands on the right (post-1228)
+  split: {
+    sectionPad: '30px 0 80px 0',
+    colPad: '0 30px 11px 0',
+    leftWidth: '50%',
+    rightWidth: '50%',
+    overviewPad: '0 0 15px 0',
+    blockPad: '0 0 0 0',
+  },
   sidebar: {
     sectionPad: '30px 0 80px 0',
     mainWidth: '70%',
@@ -150,9 +160,11 @@ export const products = [
   {
     slug: 'modular-process-skid-packages',
     title: 'Modular Process Skid Packages',
-    bodyLayout: 'stacked',
-    // One video in the left 50% column; the right column is empty on the original
-    // Two background-image bands (410px spacers) sit side by side beneath it
+    bodyLayout: 'split',
+    // This page's h5 headings are black, unlike the #283820 used elsewhere
+    headingColor: '#000000',
+    // One video at the top of the right column, with two background-image
+    // bands (410px spacers) sitting side by side beneath it
     overview:
       'Fully integrated modular systems designed for efficient installation, scalability, and rapid deployment in complex industrial environments.',
     capabilities: [
