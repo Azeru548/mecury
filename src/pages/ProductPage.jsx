@@ -126,6 +126,50 @@ export default function ProductPage() {
         </section>
       )}
 
+      {/* Videos. The original embeds Google Drive MP4s in 50/50 columns and
+          places this section ABOVE the photos. Where it groups them under a
+          navy pill heading, each group becomes its own 50/50 row. */}
+      {docGroups.length > 0 && (
+        <section className="product-docgroups">
+          <div className="container">
+            {docGroups.map((group, gi) => (
+              <div className={`product-docgroup ${gi > 0 ? 'spaced' : ''}`} key={group.title}>
+                <h4 className="product-docgroup-title">{group.title}</h4>
+                <div className="product-docgroup-row">
+                  {group.docs.map(docId => (
+                    <div className="product-docgroup-cell" key={docId}>
+                      <iframe
+                        src={`https://drive.google.com/file/d/${docId}/preview`}
+                        title={`${product.title} video`}
+                        allow="autoplay"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {docGroups.length === 0 && product.driveDocs.length > 0 && (
+        <section className="product-docs-section">
+          <div className="container">
+            <div className="product-docgroup-row">
+              {product.driveDocs.map(docId => (
+                <div className="product-docgroup-cell" key={docId}>
+                  <iframe
+                    src={`https://drive.google.com/file/d/${docId}/preview`}
+                    title={`${product.title} video`}
+                    allow="autoplay"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Photos. The original splits these into separate boxed sections with
           per-column widths that differ from page to page, so each row
           carries its own widths (see imageRows in products.js). */}
@@ -148,47 +192,6 @@ export default function ProductPage() {
               </div>
             </div>
           ))}
-        </section>
-      )}
-
-      {/* Google Drive document previews. Where the original groups them under a
-          navy pill heading, each group becomes a 50/50 row of two previews. */}
-      {docGroups.length > 0 && (
-        <section className="product-docgroups">
-          <div className="container">
-            {docGroups.map((group, gi) => (
-              <div className={`product-docgroup ${gi > 0 ? 'spaced' : ''}`} key={group.title}>
-                <h4 className="product-docgroup-title">{group.title}</h4>
-                <div className="product-docgroup-row">
-                  {group.docs.map(docId => (
-                    <div className="product-docgroup-cell" key={docId}>
-                      <iframe
-                        src={`https://drive.google.com/file/d/${docId}/preview`}
-                        title={`${product.title} document`}
-                        allow="autoplay"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {docGroups.length === 0 && product.driveDocs.length > 0 && (
-        <section className="product-docs-section">
-          <div className="container">
-            {product.driveDocs.map(docId => (
-              <div className="product-doc" key={docId}>
-                <iframe
-                  src={`https://drive.google.com/file/d/${docId}/preview`}
-                  title={`${product.title} document`}
-                  allow="autoplay"
-                />
-              </div>
-            ))}
-          </div>
         </section>
       )}
     </div>

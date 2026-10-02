@@ -119,7 +119,8 @@ export const products = [
         ],
       },
     ],
-    driveDocs: [],
+    // Videos, in a 50/50 row that sits ABOVE the photo sections
+    driveDocs: ['1Ue3l9d-cWRYQldYkndmOLYLgQ2wygxI3', '1XTgGxr6LcCZDlK_HpjVVIS3AjeoNI4nY'],
     card: {
       title: 'PRESSURE VESSELS/',
       subtitle: 'TOWERS/COLUMNS',
@@ -132,6 +133,7 @@ export const products = [
     slug: 'modular-process-skid-packages',
     title: 'Modular Process Skid Packages',
     bodyLayout: 'stacked',
+    // One video in the left 50% column; the right column is empty on the original
     overview:
       'Fully integrated modular systems designed for efficient installation, scalability, and rapid deployment in complex industrial environments.',
     capabilities: [
