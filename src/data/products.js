@@ -1,6 +1,5 @@
 // Content extracted verbatim from the original site's product pages.
 // Slugs match the original URLs (e.g. /shell-tube-heat-exchanger/).
-const BASE = 'https://aef.dibkopetromax.com/wp-content/uploads/2026/07'
 
 // Body layouts, transcribed from each page's Elementor CSS.
 //  'dotted3' — Overview full width, then 3 dotted columns (post-25)
@@ -132,16 +131,16 @@ export const products = [
       {
         widths: ['34.497%', '34.5%', '30.667%'],
         images: [
-          `${BASE}/20221230_231944936_iOS.jpeg`,
-          `${BASE}/20250127_195909841_iOS.jpeg`,
-          `${BASE}/20220420_011646000_iOS.jpeg`,
+          '/images/prod/20221230_231944936_iOS.jpeg',
+          '/images/prod/20250127_195909841_iOS.jpeg',
+          '/images/prod/20220420_011646000_iOS.jpeg',
         ],
       },
       {
         widths: ['34.5%', '34.4%'],
         images: [
-          `${BASE}/20260508_170809654_iOS.jpeg`,
-          `${BASE}/20260508_170559774_iOS.jpeg`,
+          '/images/prod/20260508_170809654_iOS.jpeg',
+          '/images/prod/20260508_170559774_iOS.jpeg',
         ],
       },
     ],
@@ -216,7 +215,7 @@ export const products = [
     imageRows: [
       {
         widths: ['50%', '50%'],
-        images: [`${BASE}/20220907_165912178_iOS.jpeg`, `${BASE}/20220516_230656501_iOS.jpeg`],
+        images: ['/images/prod/20220907_165912178_iOS.jpeg', '/images/prod/20220516_230656501_iOS.jpeg'],
       },
     ],
     driveDocs: [],
@@ -282,7 +281,7 @@ export const products = [
     imageRows: [
       {
         widths: ['36.5%', '63.5%'],
-        images: [`${BASE}/20241127_171922015_iOS-rotated.jpeg`, `${BASE}/20260210_000325764_iOS.jpeg`],
+        images: ['/images/prod/20241127_171922015_iOS-rotated.jpeg', '/images/prod/20260210_000325764_iOS.jpeg'],
       },
     ],
     driveDocs: [],
