@@ -20,7 +20,7 @@
 }
 
 .cert-inner {
-  max-width: 1140px;
+  max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 20px;
   display: flex;

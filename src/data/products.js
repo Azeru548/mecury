@@ -37,14 +37,12 @@ export const BODY_LAYOUTS = {
     sectionPad: '30px 0 20px',
     overviewPad: '0 0 25px 0',
     widths: ['44.164%', '31.668%', '23.446%'],
-    margins: ['10px', '10px', '0px'],
     pads: ['25px 25px 10px 25px', '25px 0 25px 25px', '25px 0 25px 25px'],
   },
   dotted2: {
     sectionPad: '30px 0 20px',
     overviewPad: '0 0 10px 0',
     widths: ['50%', '50%'],
-    margins: ['10px', '0px'],
     pads: ['25px 25px 10px 25px', '25px 0 25px 25px'],
   },
   stacked: {

@@ -17,6 +17,23 @@
   --light-gray: #F1F1F1;
   --font-main: 'Raleway', sans-serif;
   --font-heading: 'Raleway', sans-serif;
+
+  /* Original theme (progrisaas) overrides the boxed container per breakpoint:
+     1200 / 970 / 750 — verified against the rendered site, not the 1140 the
+     Elementor kit suggests. */
+  --container-max: 1200px;
+}
+
+@media (max-width: 1229px) {
+  :root {
+    --container-max: 970px;
+  }
+}
+
+@media (max-width: 991px) {
+  :root {
+    --container-max: 750px;
+  }
 }
 
 html {
@@ -44,8 +61,10 @@ img {
   height: auto;
 }
 
+/* The original's boxed container has no horizontal padding — spacing comes
+   from the 10px per-column padding inside each Elementor container. */
 .container {
-  max-width: 1200px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
 }

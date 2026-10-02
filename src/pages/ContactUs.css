@@ -20,7 +20,7 @@
 }
 
 .contact-info-inner {
-  max-width: 1140px;
+  max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -97,7 +97,7 @@
 }
 
 .contact-form-panel {
-  max-width: 1140px;
+  max-width: var(--container-max);
   margin: 0 auto;
   background: var(--navy-mid);   /* #1F3141 */
   padding: 40px 40px;

@@ -68,49 +68,51 @@ export default function ProductPage() {
       <section className="product-body" style={{ padding: layout.sectionPad }}>
         <div className="container">
           {layout.leftWidth ? (
-            /* Split variant: 50% text column beside a 50% media column */
+            /* Split variant: a 50/50 row (text | video) with a full-width
+               row of background-image bands beneath it */
             <div className="product-split-2" style={{ padding: layout.colPad }}>
-              <div className="product-split-col" style={{ width: layout.leftWidth }}>
-                <div className="product-block" style={{ padding: layout.overviewPad }}>
-                  <h5 className="product-h5" style={headingColor ? { color: headingColor } : undefined}>
-                    Overview
-                  </h5>
-                  <p className="product-overview">{product.overview}</p>
-                </div>
-                {blocks.map(block => (
-                  <div className="product-block" style={{ padding: layout.blockPad }} key={block.key}>
-                    <ProductBlock {...block} headingColor={headingColor} />
+              <div className="product-split-row">
+                <div className="product-split-col" style={{ width: layout.leftWidth }}>
+                  <div className="product-block" style={{ padding: layout.overviewPad }}>
+                    <h5 className="product-h5" style={headingColor ? { color: headingColor } : undefined}>
+                      Overview
+                    </h5>
+                    <p className="product-overview">{product.overview}</p>
                   </div>
-                ))}
-              </div>
+                  {blocks.map(block => (
+                    <div className="product-block" style={{ padding: layout.blockPad }} key={block.key}>
+                      <ProductBlock {...block} headingColor={headingColor} />
+                    </div>
+                  ))}
+                </div>
 
-              <div className="product-split-col" style={{ width: layout.rightWidth }}>
-                {product.driveDocs.length > 0 && (
-                  <div className="product-docgroup-row">
-                    {product.driveDocs.map(docId => (
-                      <div className="product-docgroup-cell" key={docId}>
+                <div className="product-split-col" style={{ width: layout.rightWidth }}>
+                  {product.driveDocs.length > 0 && (
+                    <div className="product-video">
+                      {product.driveDocs.map(docId => (
                         <iframe
+                          key={docId}
                           src={`https://drive.google.com/file/d/${docId}/preview`}
                           title={`${product.title} video`}
                           allow="autoplay"
                         />
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {product.bandImages && product.bandImages.length > 0 && (
-                  <div className="product-bandimages-row">
-                    {product.bandImages.map(src => (
-                      <div
-                        key={src}
-                        className="product-bandimage"
-                        style={{ height: product.bandImagesHeight, backgroundImage: `url(${src})` }}
-                      />
-                    ))}
-                  </div>
-                )}
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
+
+              {product.bandImages && product.bandImages.length > 0 && (
+                <div className="product-bandimages-row">
+                  {product.bandImages.map(src => (
+                    <div
+                      key={src}
+                      className="product-bandimage"
+                      style={{ height: product.bandImagesHeight, backgroundImage: `url(${src})` }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           ) : layout.mainWidth ? (
             /* Sidebar variant: 70% main column + 29.917% sub-menu sidebar */
@@ -193,10 +195,7 @@ export default function ProductPage() {
                   <div
                     className="product-list-col"
                     key={block.key}
-                    style={{
-                      width: layout.widths[i],
-                      marginRight: layout.margins[i],
-                    }}
+                    style={{ width: layout.widths[i] }}
                   >
                     <div className="product-list-inner" style={{ padding: layout.pads[i] }}>
                       <ProductBlock {...block} />

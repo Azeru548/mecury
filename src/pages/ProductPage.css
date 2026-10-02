@@ -7,7 +7,7 @@
 }
 
 .product-title-band .container {
-  max-width: 1140px;
+  max-width: var(--container-max);
   padding: 25px 0;
 }
 
@@ -15,7 +15,7 @@
   font-family: 'Raleway', sans-serif;
   font-size: 36px;
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.2;   /* theme: h1-h6 line-height 1.2 */
   color: #FFFFFF;
   margin: 0;
   padding: 0;
@@ -29,7 +29,7 @@
 }
 
 .product-body .container {
-  max-width: 1140px;
+  max-width: var(--container-max);
 }
 
 /* h5 sub-headings — original uses <h5><strong> in #283820, theme h5 = 24px */
@@ -53,6 +53,13 @@
 }
 
 .product-overview {
+  /* Theme zeroes the last paragraph inside a text-editor widget */
+  margin: 0;
+}
+
+/* Structural Fabrication keeps Overview and both lists in ONE text-editor, so
+   the paragraph isn't the last child and keeps its 20px bottom margin. */
+.product-split .product-overview {
   margin: 0 0 20px;
 }
 
@@ -72,6 +79,7 @@
 }
 
 .product-list-col {
+  flex-shrink: 0;           /* original keeps its % width rather than shrinking */
   padding: 0 10px;          /* elementor-column-gap-default */
   border: 1px dotted #D5D8DC;
   border-radius: 0;
@@ -92,15 +100,28 @@
 }
 
 /* ===== Split layout (Modular Process Skid) =====
-   Original: col-100 with padding 0 30px 11px 0 wrapping two col-50 columns. */
+   Original: col-100 populated wrapper with padding 0 30px 11px 0, holding
+   inner section 3fd64ed (two col-50 columns: text | video) and then inner
+   section 88eddbd (two col-50 background-image bands, 410px tall). */
 .product-split-2 {
-  display: flex;
-  align-items: flex-start;
   padding: 0 30px 11px 0;
+}
+
+.product-split-row {
+  display: flex;
 }
 
 .product-split-col {
   padding: 0 10px;   /* elementor-column-gap-default */
+}
+
+/* The Drive embed sits at the top of the right-hand column */
+.product-video iframe {
+  display: block;
+  width: 640px;
+  max-width: 100%;
+  height: 480px;
+  border: 0;
 }
 
 /* ===== Sidebar layout (Structural Fabrication) =====
@@ -108,17 +129,14 @@
    sidebar (padding 0 30px 30px 30px) that is hidden on mobile. */
 .product-split {
   display: flex;
-  align-items: flex-start;
 }
 
+/* These two columns carry their own 30px padding from the original's
+   per-element CSS, which overrides the 10px column-gap-default padding —
+   so no extra 10px is added here. */
 .product-main-col,
 .product-side-col {
-  padding-left: 10px;   /* elementor-column-gap-default */
-  padding-right: 10px;
-}
-
-.product-main-col {
-  align-items: flex-start;
+  flex-shrink: 0;
 }
 
 /* Background-image band: center center / cover / no-repeat */
@@ -130,6 +148,9 @@
 
 .product-band-inner {
   width: 100%;
+  /* The 376px is the original's spacer height; the 8px padding sits outside it,
+     giving the section's real 392px. */
+  box-sizing: content-box;
 }
 
 /* Sidebar heading — original h6 override: Raleway 20px 500 #283820 */
@@ -157,7 +178,7 @@
   flex-direction: row;
   align-items: flex-start;
   grid-gap: 12px;
-  line-height: 1;
+  line-height: 1.2;   /* theme: h1-h6 line-height 1.2 */
   text-decoration: none;
   background-color: #FAFAFA;
   padding: 5px;
@@ -183,7 +204,7 @@
 .ep-sub-menu .ep-sub-menu-wrap .ep-hover-icon {
   align-self: center;
   font-size: 22px;
-  line-height: 1;
+  line-height: 1.2;   /* theme: h1-h6 line-height 1.2 */
   color: #FFFFFF;
   opacity: 0;
   transform: translateX(-10px);
@@ -210,13 +231,15 @@
   color: #FFFFFF;
 }
 
-/* ===== Side-by-side background-image bands (Modular page) ===== */
+/* ===== Side-by-side background-image bands (Modular page) =====
+   Full-width row under the text/video row; two 50% bands, 410px tall,
+   the first carrying a 20px right margin. */
 .product-bandimages {
   background: #FFFFFF;
 }
 
 .product-bandimages .container {
-  max-width: 1140px;
+  max-width: var(--container-max);
 }
 
 .product-bandimages-row {
@@ -224,16 +247,19 @@
 }
 
 .product-bandimage {
+  flex-shrink: 0;
   width: 50%;
   padding: 0 10px;
-  margin-right: 20px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.product-bandimage:last-child {
-  margin-right: 0;
+/* Original: first band column carries a 20px right margin, so its border box
+   is 20px narrower — 565 + 20 margin = 585, matching the second column. */
+.product-bandimage:first-child {
+  width: calc(50% - 20px);
+  margin-right: 20px;
 }
 
 /* ===== Photos =====
@@ -248,7 +274,7 @@
 }
 
 .product-images-section .container {
-  max-width: 1140px;
+  max-width: var(--container-max);
 }
 
 .product-image-row {
@@ -294,7 +320,7 @@
 }
 
 .product-docgroups .container {
-  max-width: 1140px;
+  max-width: var(--container-max);
 }
 
 .product-docgroup-title {
@@ -436,15 +462,19 @@
     flex-direction: column;
   }
 
-  .product-bandimage {
+  .product-bandimage,
+  .product-bandimage:first-child {
     width: 100%;
     margin-right: 0;
   }
 
   /* Original mobile: the col-100 wrapper drops its padding */
   .product-split-2 {
-    flex-direction: column;
     padding: 0 !important;
+  }
+
+  .product-split-row {
+    flex-direction: column;
   }
 
   .product-split-col {
