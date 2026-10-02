@@ -64,7 +64,61 @@ export default function ProductPage() {
           puts the remaining blocks in dotted-border columns (see BODY_LAYOUTS). */}
       <section className="product-body" style={{ padding: layout.sectionPad }}>
         <div className="container">
-          {layout.stackWidth ? (
+          {layout.mainWidth ? (
+            /* Sidebar variant: 70% main column + 29.917% sub-menu sidebar */
+            <div className="product-split">
+              <div className="product-main-col" style={{ width: layout.mainWidth, padding: layout.mainPad }}>
+                {/* One text-editor holds Overview + both lists */}
+                <div className="product-block" style={{ padding: layout.blockPad }}>
+                  <h5 className="product-h5">Overview</h5>
+                  <p className="product-overview">{product.overview}</p>
+                  {blocks.map(block => (
+                    <ProductBlock {...block} key={block.key} />
+                  ))}
+                </div>
+
+                {/* Background-image band, sized by the original's 376px spacer */}
+                {product.bandImage && (
+                  <div className="product-band" style={{ backgroundImage: `url(${product.bandImage})` }}>
+                    <div
+                      className="product-band-inner"
+                      style={{ padding: layout.bandPad, height: layout.bandHeight }}
+                    />
+                  </div>
+                )}
+
+                <div style={{ height: layout.gapSpacer }} />
+              </div>
+
+              <aside
+                className="product-side-col"
+                style={{ width: layout.sideWidth, padding: layout.sidePad }}
+              >
+                <h6 className="product-side-title">{layout.sideTitle}</h6>
+                <div style={{ height: layout.sideSpacer }} />
+                <nav className="ep-sub-menu">
+                  <div className="ep-sub-menu-wrap">
+                    <div className="ep-sub-menu-grid ep-menu-style-1">
+                      {products.map(p => (
+                        <Link
+                          to={`/products/${p.slug}`}
+                          key={p.slug}
+                          className={`ep-item ${p.slug === slug ? 'active' : ''}`}
+                        >
+                          <span className="ep-content">
+                            <span className="ep-title">
+                              {p.subMenuTitle || p.title}
+                            </span>
+                          </span>
+                          <span className="ep-hover-icon" aria-hidden="true">&rarr;</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </nav>
+              </aside>
+            </div>
+          ) : layout.stackWidth ? (
             /* Stacked variant: one narrow column, no borders */
             <div className="product-stack" style={{ width: layout.stackWidth }}>
               <div className="product-block" style={{ padding: layout.blockPad }}>
@@ -107,25 +161,6 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Products sub-menu (only on Structural Fabrication, like the original) */}
-      {product.showProductsMenu && (
-        <section className="product-submenu-section">
-          <div className="container">
-            <div className="product-submenu">
-              {products.map(p => (
-                <Link
-                  to={`/products/${p.slug}`}
-                  key={p.slug}
-                  className={`product-submenu-item ${p.slug === slug ? 'current' : ''}`}
-                >
-                  <span className="product-submenu-title">{p.title}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Videos. The original embeds Google Drive MP4s in 50/50 columns and
           places this section ABOVE the photos. Where it groups them under a
           navy pill heading, each group becomes its own 50/50 row. */}
@@ -164,6 +199,24 @@ export default function ProductPage() {
                     allow="autoplay"
                   />
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Background-image bands (CSS backgrounds on the original, so they never
+          appear as <img> in the markup) */}
+      {product.bandImages && product.bandImages.length > 0 && (
+        <section className="product-bandimages">
+          <div className="container">
+            <div className="product-bandimages-row">
+              {product.bandImages.map((src, i) => (
+                <div
+                  key={src}
+                  className="product-bandimage"
+                  style={{ height: product.bandImagesHeight, backgroundImage: `url(${src})` }}
+                />
               ))}
             </div>
           </div>

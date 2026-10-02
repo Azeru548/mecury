@@ -91,42 +91,136 @@
   margin-bottom: 0;
 }
 
-/* ===== Products sub-menu (Structural page) ===== */
-.product-submenu-section {
-  background: #FFFFFF;
-  padding: 0 0 20px;
-}
-
-.product-submenu {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.product-submenu-item {
+/* ===== Sidebar layout (Structural Fabrication) =====
+   Original: 70% main column (padding 0 30px 30px 0) beside a 29.917%
+   sidebar (padding 0 30px 30px 30px) that is hidden on mobile. */
+.product-split {
   display: flex;
+  align-items: flex-start;
+}
+
+.product-main-col,
+.product-side-col {
+  padding-left: 10px;   /* elementor-column-gap-default */
+  padding-right: 10px;
+}
+
+.product-main-col {
+  align-items: flex-start;
+}
+
+/* Background-image band: center center / cover / no-repeat */
+.product-band {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.product-band-inner {
+  width: 100%;
+}
+
+/* Sidebar heading — original h6 override: Raleway 20px 500 #283820 */
+.product-side-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #283820;
+  margin: 0 0 20px;
+}
+
+/* ===== Products sub-menu (ep-sub-menu, menu-style-1) =====
+   Grid is a single column with 3px row gap; items are #FAFAFA with a
+   dotted 1px #99999973 border and 5px padding. */
+.ep-sub-menu .ep-sub-menu-wrap .ep-sub-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 3px 25px;
+}
+
+.ep-sub-menu .ep-sub-menu-wrap .ep-item {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  grid-gap: 12px;
+  line-height: 1;
+  text-decoration: none;
+  background-color: #FAFAFA;
+  padding: 5px;
+  border: 1px dotted #99999973;
+  transition: background-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1),
+    border-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.ep-sub-menu .ep-sub-menu-wrap .ep-title {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  background: #F5F5F5;
-  border: 1px solid #E5E5E5;
-  padding: 14px 18px;
-  font-family: var(--font-main);
+  grid-column-gap: 10px;
+  position: relative;
+  font-family: Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
+  line-height: 18px;
   color: #283820;
-  transition: all 0.3s;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-.product-submenu-item:hover {
-  background: var(--navy-mid);
-  color: #fff;
-  border-color: var(--navy-mid);
+.ep-sub-menu .ep-sub-menu-wrap .ep-hover-icon {
+  align-self: center;
+  font-size: 22px;
+  line-height: 1;
+  color: #FFFFFF;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.product-submenu-item.current {
-  background: var(--navy-mid);
-  color: #fff;
-  border-color: var(--navy-mid);
+.ep-sub-menu .ep-sub-menu-wrap .ep-item:hover {
+  background-color: #F15B29;         /* --e-global-color-secondary */
+  border-color: #F15B29;
+}
+
+.ep-sub-menu .ep-sub-menu-wrap .ep-item:hover .ep-title {
+  color: #FFFFFF;
+}
+
+.ep-sub-menu .ep-sub-menu-wrap .ep-item:hover .ep-hover-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ep-sub-menu .ep-sub-menu-wrap .ep-item.active .ep-title {
+  background-color: #F15B29;
+  color: #FFFFFF;
+}
+
+/* ===== Side-by-side background-image bands (Modular page) ===== */
+.product-bandimages {
+  background: #FFFFFF;
+}
+
+.product-bandimages .container {
+  max-width: 1140px;
+}
+
+.product-bandimages-row {
+  display: flex;
+}
+
+.product-bandimage {
+  width: 50%;
+  margin-right: 20px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.product-bandimage:last-child {
+  margin-right: 0;
 }
 
 /* ===== Photos =====
@@ -258,6 +352,12 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 767px) {
+  /* Original mobile: white body section becomes 18px all round.
+     Needed as !important because section padding is set inline per layout. */
+  .product-body {
+    padding: 18px !important;
+  }
+
   .product-lists {
     flex-direction: column;
   }
@@ -299,8 +399,33 @@
     width: 100% !important;
   }
 
-  .product-submenu {
-    grid-template-columns: 1fr;
+  .product-split {
+    flex-direction: column;
+  }
+
+  /* Original mobile: main column padding 0, band padding 0 0 14px 0,
+     spacer 24px, and the sidebar column is hidden */
+  .product-main-col,
+  .product-side-col {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .product-side-col {
+    display: none;
+  }
+
+  .product-band-inner {
+    padding: 0 0 14px 0 !important;
+  }
+
+  .product-bandimages-row {
+    flex-direction: column;
+  }
+
+  .product-bandimage {
+    width: 100%;
+    margin-right: 0;
   }
 
   .product-page-title {

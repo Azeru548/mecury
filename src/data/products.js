@@ -6,7 +6,23 @@ const BASE = 'https://aef.dibkopetromax.com/wp-content/uploads/2026/07'
 //  'dotted3' — Overview full width, then 3 dotted columns (post-25)
 //  'dotted2' — Overview full width, then 2 dotted columns (post-21/17/1218)
 //  'stacked' — single narrow column, headings + lists stacked, no borders
+//  'sidebar' — 70% main column (text + full-width image band) beside a
+//              29.917% sidebar holding the "Products and Services" sub-menu
 export const BODY_LAYOUTS = {
+  sidebar: {
+    sectionPad: '30px 0 80px 0',
+    mainWidth: '70%',
+    mainPad: '0 30px 30px 0',
+    sideWidth: '29.917%',
+    sidePad: '0 30px 30px 30px',
+    blockPad: '0 0 20px 0',
+    // Background-image band: 376px spacer inside 8px padding
+    bandPad: '8px',
+    bandHeight: 376,
+    gapSpacer: 30,
+    sideTitle: 'Products and Services',
+    sideSpacer: 20,
+  },
   dotted3: {
     sectionPad: '30px 0 20px',
     overviewPad: '0 0 25px 0',
@@ -32,6 +48,8 @@ export const products = [
   {
     slug: 'shell-tube-heat-exchanger',
     title: 'Heat Exchanger',
+    // The sub-menu on Structural Fabrication uses the original's longer label
+    subMenuTitle: 'Heat Exchanger / Air Cooler',
     overview:
       'Engineered and fabricated for efficient thermal transfer in demanding process environments, our heat exchangers are designed to meet a wide range of operating conditions and performance requirements.',
     capabilities: [
@@ -134,6 +152,7 @@ export const products = [
     title: 'Modular Process Skid Packages',
     bodyLayout: 'stacked',
     // One video in the left 50% column; the right column is empty on the original
+    // Two background-image bands (410px spacers) sit side by side beneath it
     overview:
       'Fully integrated modular systems designed for efficient installation, scalability, and rapid deployment in complex industrial environments.',
     capabilities: [
@@ -151,6 +170,12 @@ export const products = [
     ],
     imageRows: [],
     driveDocs: ['1sykPeZSU2elfjSO-2KzbfzavUrI5Wl5Z'],
+    // Two CSS background bands, side by side, each 410px tall
+    bandImages: [
+      '/images/mod-20220119_190954386_iOS.jpeg',
+      '/images/mod-20220119_191351375_iOS.jpeg',
+    ],
+    bandImagesHeight: 410,
     card: {
       title: 'MODULAR PROCESS',
       subtitle: 'SKID PACKAGES',
@@ -196,7 +221,7 @@ export const products = [
   {
     slug: 'structural-fabrication',
     title: 'Structural Fabrication',
-    bodyLayout: 'stacked',
+    bodyLayout: 'sidebar',
     overview:
       'Precision structural steel fabrication supporting industrial systems, equipment, and modular skids.',
     capabilities: [
@@ -211,7 +236,10 @@ export const products = [
       'Industrial plants and facilities',
       'Equipment support and platforms',
     ],
+    // Background-image band inside the main column (CSS background on the
+    // original, not an <img>). 376px spacer inside 8px of padding.
     imageRows: [],
+    bandImage: '/images/structural-bg.jpg',
     driveDocs: [],
     showProductsMenu: true,
     card: {
