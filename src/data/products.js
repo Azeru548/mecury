@@ -5,7 +5,7 @@ const BASE = 'https://aef.dibkopetromax.com/wp-content/uploads/2026/07'
 export const products = [
   {
     slug: 'shell-tube-heat-exchanger',
-    title: 'Heat Exchanger / Air Cooler',
+    title: 'Heat Exchanger',
     overview:
       'Engineered and fabricated for efficient thermal transfer in demanding process environments, our heat exchangers are designed to meet a wide range of operating conditions and performance requirements.',
     capabilities: [
