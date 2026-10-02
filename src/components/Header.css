@@ -1,11 +1,14 @@
+/* Original uses Elementor sticky ("sticky":"top", offset 0) — the header keeps
+   its place in the flow, so page content starts below it instead of behind it. */
 .header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   background: #fff;
   transition: box-shadow 0.3s ease;
+  flex-shrink: 0;
 }
 
 .header.scrolled {
