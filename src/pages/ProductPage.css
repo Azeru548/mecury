@@ -1,15 +1,25 @@
-/* ===== Navy title band (original: #1F3141, padding 80/30/80/20 col) ===== */
+/* ===== Navy title band =====
+   Original: section bg #1F3141 with 0 padding, inner column padding 25px 0.
+   Title is an h3 .elementor-heading-title.elementor-size-default -> 36px. */
 .product-title-band {
   background: var(--navy-mid);   /* #1F3141 */
-  padding: 30px 0;
+  padding: 0;
+}
+
+.product-title-band .container {
+  max-width: 1140px;
+  padding: 25px 0;
 }
 
 .product-page-title {
-  font-family: var(--font-heading);
-  font-size: 24px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 36px;
   font-weight: 500;
+  line-height: 1;
   color: #FFFFFF;
   margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
 /* ===== White body (original: #FFFFFF, padding 30px 0 20px) ===== */
@@ -203,6 +213,15 @@
   }
 
   .product-page-title {
-    font-size: 20px;
+    font-size: 27px;
+  }
+
+  /* Original mobile: section padding 1px, column padding 80px 30px 80px 20px */
+  .product-title-band {
+    padding: 1px;
+  }
+
+  .product-title-band .container {
+    padding: 80px 30px 80px 20px;
   }
 }
