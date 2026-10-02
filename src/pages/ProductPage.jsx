@@ -49,6 +49,7 @@ export default function ProductPage() {
   const layout = BODY_LAYOUTS[product.bodyLayout] || BODY_LAYOUTS.dotted2
   const blocks = buildBlocks(product)
   const docGroups = product.docGroups || []
+  const imageRows = product.imageRows || []
 
   return (
     <div className="product-page">
@@ -125,18 +126,28 @@ export default function ProductPage() {
         </section>
       )}
 
-      {/* Images grid (33/33/33 row + remainder, like the original) */}
-      {product.images.length > 0 && (
+      {/* Photos. The original splits these into separate boxed sections with
+          per-column widths that differ from page to page, so each row
+          carries its own widths (see imageRows in products.js). */}
+      {imageRows.length > 0 && (
         <section className="product-images-section">
-          <div className="container">
-            <div className="product-images-grid">
-              {product.images.map(src => (
-                <div className="product-image-cell" key={src}>
-                  <img src={src} alt={product.title} loading="lazy" />
+          {imageRows.map((row, ri) => (
+            <div className="product-image-section-row" key={ri}>
+              <div className="container">
+                <div className="product-image-row">
+                  {row.images.map((src, i) => (
+                    <div
+                      className="product-image-cell"
+                      key={src}
+                      style={{ width: row.widths[i] }}
+                    >
+                      <img src={src} alt={product.title} loading="lazy" />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
+          ))}
         </section>
       )}
 

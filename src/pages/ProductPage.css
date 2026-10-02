@@ -129,20 +129,28 @@
   border-color: var(--navy-mid);
 }
 
-/* ===== Images grid (original: 33/33/33 row + 2 below) ===== */
+/* ===== Photos =====
+   Each row is its own boxed section; columns carry the original widths and
+   the 10px elementor-column-gap-default padding. */
 .product-images-section {
   background: #FFFFFF;
-  padding: 0 0 20px;
 }
 
-.product-images-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+.product-image-section-row {
+  padding: 0;
+}
+
+.product-images-section .container {
+  max-width: 1140px;
+}
+
+.product-image-row {
+  display: flex;
+  align-items: flex-start;
 }
 
 .product-image-cell {
-  width: 100%;
+  padding: 0 10px;
 }
 
 .product-image-cell img {
@@ -283,7 +291,14 @@
     font-size: 21px;
   }
 
-  .product-images-grid,
+  .product-image-row {
+    flex-direction: column;
+  }
+
+  .product-image-cell {
+    width: 100% !important;
+  }
+
   .product-submenu {
     grid-template-columns: 1fr;
   }

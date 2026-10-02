@@ -62,7 +62,7 @@ export const products = [
         docs: ['1FEc-6fpN3M5NgjRMTMAz3U1wXmXa8MWP', '1xBBjgJmCenktFY-JLrpuHVnht4ayArX5'],
       },
     ],
-    images: [],
+    imageRows: [],
     driveDocs: [
       '17m3QuaqnmQrtPlM6bPFkDqsUKX6tFhZh',
       '1FEc-6fpN3M5NgjRMTMAz3U1wXmXa8MWP',
@@ -100,12 +100,24 @@ export const products = [
       'Pharmaceutical',
       'Pressurized Gas',
     ],
-    images: [
-      `${BASE}/20221230_231944936_iOS.jpeg`,
-      `${BASE}/20250127_195909841_iOS.jpeg`,
-      `${BASE}/20220420_011646000_iOS.jpeg`,
-      `${BASE}/20260508_170809654_iOS.jpeg`,
-      `${BASE}/20260508_170559774_iOS.jpeg`,
+    // Two boxed sections, each split into 3 columns with these exact widths.
+    // The second row only fills its first two columns — the third is empty.
+    imageRows: [
+      {
+        widths: ['34.497%', '34.5%', '30.667%'],
+        images: [
+          `${BASE}/20221230_231944936_iOS.jpeg`,
+          `${BASE}/20250127_195909841_iOS.jpeg`,
+          `${BASE}/20220420_011646000_iOS.jpeg`,
+        ],
+      },
+      {
+        widths: ['34.5%', '34.4%'],
+        images: [
+          `${BASE}/20260508_170809654_iOS.jpeg`,
+          `${BASE}/20260508_170559774_iOS.jpeg`,
+        ],
+      },
     ],
     driveDocs: [],
     card: {
@@ -135,7 +147,7 @@ export const products = [
       'Water and wastewater systems',
       'Energy infrastructure projects',
     ],
-    images: [],
+    imageRows: [],
     driveDocs: ['1sykPeZSU2elfjSO-2KzbfzavUrI5Wl5Z'],
     card: {
       title: 'MODULAR PROCESS',
@@ -163,7 +175,13 @@ export const products = [
       'Petrochemical plants',
       'Industrial processing infrastructure',
     ],
-    images: [`${BASE}/20220907_165912178_iOS.jpeg`, `${BASE}/20220516_230656501_iOS.jpeg`],
+    // Single section, two 50% columns
+    imageRows: [
+      {
+        widths: ['50%', '50%'],
+        images: [`${BASE}/20220907_165912178_iOS.jpeg`, `${BASE}/20220516_230656501_iOS.jpeg`],
+      },
+    ],
     driveDocs: [],
     card: {
       title: 'PIPING',
@@ -191,7 +209,7 @@ export const products = [
       'Industrial plants and facilities',
       'Equipment support and platforms',
     ],
-    images: [],
+    imageRows: [],
     driveDocs: [],
     showProductsMenu: true,
     card: {
@@ -220,7 +238,13 @@ export const products = [
       'Industrial process water treatment',
       'Environmental compliance systems',
     ],
-    images: [`${BASE}/20241127_171922015_iOS-rotated.jpeg`, `${BASE}/20260210_000325764_iOS.jpeg`],
+    // Single section split 36.5% / 63.5%
+    imageRows: [
+      {
+        widths: ['36.5%', '63.5%'],
+        images: [`${BASE}/20241127_171922015_iOS-rotated.jpeg`, `${BASE}/20260210_000325764_iOS.jpeg`],
+      },
+    ],
     driveDocs: [],
     card: {
       title: 'WATER',
