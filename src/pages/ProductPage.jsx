@@ -1,7 +1,32 @@
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { products } from '../data/products'
+import { products, BODY_LAYOUTS } from '../data/products'
 import './ProductPage.css'
+
+// Overview + list blocks, in the order the original renders them
+function buildBlocks(product) {
+  const blocks = [
+    { key: 'capabilities', label: 'Key Capabilities', items: product.capabilities },
+    { key: 'applications', label: 'Applications', items: product.applications },
+  ]
+  if (product.materials && product.materials.length > 0) {
+    blocks.push({ key: 'materials', label: 'Materials', items: product.materials })
+  }
+  return blocks
+}
+
+function ProductBlock({ label, items }) {
+  return (
+    <>
+      <h5 className="product-h5">{label}</h5>
+      <ul className="product-list">
+        {items.map(item => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </>
+  )
+}
 
 export default function ProductPage() {
   const { slug } = useParams()
@@ -21,6 +46,10 @@ export default function ProductPage() {
     )
   }
 
+  const layout = BODY_LAYOUTS[product.bodyLayout] || BODY_LAYOUTS.dotted2
+  const blocks = buildBlocks(product)
+  const docGroups = product.docGroups || []
+
   return (
     <div className="product-page">
       {/* Navy title band (original: #1F3141, page title white Raleway 500) */}
@@ -30,44 +59,49 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* White section: Overview / Key Capabilities / Applications */}
-      <section className="product-body">
+      {/* White section. The original lays the Overview out full width, then
+          puts the remaining blocks in dotted-border columns (see BODY_LAYOUTS). */}
+      <section className="product-body" style={{ padding: layout.sectionPad }}>
         <div className="container">
-          <div className="product-intro-col">
-            <h5 className="product-h5">Overview</h5>
-            <p className="product-overview">{product.overview}</p>
-          </div>
-
-          <div className="product-lists">
-            <div className="product-list-col">
-              <h5 className="product-h5">Key Capabilities</h5>
-              <ul className="product-list">
-                {product.capabilities.map(item => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="product-list-col">
-              <h5 className="product-h5">Applications</h5>
-              <ul className="product-list">
-                {product.applications.map(item => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {product.materials && (
-            <div className="product-lists product-materials">
-              <div className="product-list-col">
-                <h5 className="product-h5">Materials</h5>
-                <ul className="product-list">
-                  {product.materials.map(item => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+          {layout.stackWidth ? (
+            /* Stacked variant: one narrow column, no borders */
+            <div className="product-stack" style={{ width: layout.stackWidth }}>
+              <div className="product-block" style={{ padding: layout.blockPad }}>
+                <h5 className="product-h5">Overview</h5>
+                <p className="product-overview">{product.overview}</p>
               </div>
+              {blocks.map(block => (
+                <div className="product-block" style={{ padding: layout.blockPad }} key={block.key}>
+                  <ProductBlock {...block} />
+                </div>
+              ))}
             </div>
+          ) : (
+            <>
+              {/* Overview — full page width */}
+              <div className="product-block product-overview-block" style={{ padding: layout.overviewPad }}>
+                <h5 className="product-h5">Overview</h5>
+                <p className="product-overview">{product.overview}</p>
+              </div>
+
+              {/* Key Capabilities / Applications / Materials — dotted columns */}
+              <div className="product-lists">
+                {blocks.map((block, i) => (
+                  <div
+                    className="product-list-col"
+                    key={block.key}
+                    style={{
+                      width: layout.widths[i],
+                      marginRight: layout.margins[i],
+                    }}
+                  >
+                    <div className="product-list-inner" style={{ padding: layout.pads[i] }}>
+                      <ProductBlock {...block} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </section>
@@ -106,8 +140,32 @@ export default function ProductPage() {
         </section>
       )}
 
-      {/* Google Drive document previews (embedded on the original pages) */}
-      {product.driveDocs.length > 0 && (
+      {/* Google Drive document previews. Where the original groups them under a
+          navy pill heading, each group becomes a 50/50 row of two previews. */}
+      {docGroups.length > 0 && (
+        <section className="product-docgroups">
+          <div className="container">
+            {docGroups.map((group, gi) => (
+              <div className={`product-docgroup ${gi > 0 ? 'spaced' : ''}`} key={group.title}>
+                <h4 className="product-docgroup-title">{group.title}</h4>
+                <div className="product-docgroup-row">
+                  {group.docs.map(docId => (
+                    <div className="product-docgroup-cell" key={docId}>
+                      <iframe
+                        src={`https://drive.google.com/file/d/${docId}/preview`}
+                        title={`${product.title} document`}
+                        allow="autoplay"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {docGroups.length === 0 && product.driveDocs.length > 0 && (
         <section className="product-docs-section">
           <div className="container">
             {product.driveDocs.map(docId => (

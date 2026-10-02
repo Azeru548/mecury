@@ -2,6 +2,32 @@
 // Slugs match the original URLs (e.g. /shell-tube-heat-exchanger/).
 const BASE = 'https://aef.dibkopetromax.com/wp-content/uploads/2026/07'
 
+// Body layouts, transcribed from each page's Elementor CSS.
+//  'dotted3' — Overview full width, then 3 dotted columns (post-25)
+//  'dotted2' — Overview full width, then 2 dotted columns (post-21/17/1218)
+//  'stacked' — single narrow column, headings + lists stacked, no borders
+export const BODY_LAYOUTS = {
+  dotted3: {
+    sectionPad: '30px 0 20px',
+    overviewPad: '0 0 25px 0',
+    widths: ['44.164%', '31.668%', '23.446%'],
+    margins: ['10px', '10px', '0px'],
+    pads: ['25px 25px 10px 25px', '25px 0 25px 25px', '25px 0 25px 25px'],
+  },
+  dotted2: {
+    sectionPad: '30px 0 20px',
+    overviewPad: '0 0 10px 0',
+    widths: ['50%', '50%'],
+    margins: ['10px', '0px'],
+    pads: ['25px 25px 10px 25px', '25px 0 25px 25px'],
+  },
+  stacked: {
+    sectionPad: '30px 0 80px 0',
+    stackWidth: '70%',
+    blockPad: '0 0 20px 0',
+  },
+}
+
 export const products = [
   {
     slug: 'shell-tube-heat-exchanger',
@@ -24,6 +50,18 @@ export const products = [
       'Pharmaceutical',
     ],
     materials: ['Stainless Steel', 'Carbon Steel', 'Duplex'],
+    bodyLayout: 'dotted3',
+    // Two navy pill headings, each followed by a 50/50 row of doc previews
+    docGroups: [
+      {
+        title: 'Shell & Tube Heat Exchanger',
+        docs: ['1mTHqBEEt7PvRC6yO9sIsjXNYv57kSoIG', '17m3QuaqnmQrtPlM6bPFkDqsUKX6tFhZh'],
+      },
+      {
+        title: 'Air - Cooled Heat Exchanger',
+        docs: ['1FEc-6fpN3M5NgjRMTMAz3U1wXmXa8MWP', '1xBBjgJmCenktFY-JLrpuHVnht4ayArX5'],
+      },
+    ],
     images: [],
     driveDocs: [
       '17m3QuaqnmQrtPlM6bPFkDqsUKX6tFhZh',
@@ -42,6 +80,7 @@ export const products = [
   {
     slug: 'pressure-vessels-towers-columns',
     title: 'Pressure Vessels / Towers / Columns',
+    bodyLayout: 'dotted2',
     overview:
       'Absolute Energy Field specializes in the design and fabrication of ASME-certified pressure and process columns to meet stringent industry requirements.',
     capabilities: [
@@ -80,6 +119,7 @@ export const products = [
   {
     slug: 'modular-process-skid-packages',
     title: 'Modular Process Skid Packages',
+    bodyLayout: 'stacked',
     overview:
       'Fully integrated modular systems designed for efficient installation, scalability, and rapid deployment in complex industrial environments.',
     capabilities: [
@@ -108,6 +148,7 @@ export const products = [
   {
     slug: 'piping-fabrication',
     title: 'Piping Fabrication',
+    bodyLayout: 'dotted2',
     overview:
       'High-quality process piping fabricated to meet strict industry codes, ensuring reliability, performance, and seamless integration.',
     capabilities: [
@@ -135,6 +176,7 @@ export const products = [
   {
     slug: 'structural-fabrication',
     title: 'Structural Fabrication',
+    bodyLayout: 'stacked',
     overview:
       'Precision structural steel fabrication supporting industrial systems, equipment, and modular skids.',
     capabilities: [
@@ -163,6 +205,7 @@ export const products = [
   {
     slug: 'water-treatment',
     title: 'Water Treatment',
+    bodyLayout: 'dotted2',
     overview:
       'Custom-engineered water treatment solutions designed to support efficient and reliable process operations.',
     capabilities: [

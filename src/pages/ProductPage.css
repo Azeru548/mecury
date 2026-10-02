@@ -22,7 +22,7 @@
   text-align: left;
 }
 
-/* ===== White body (original: #FFFFFF, padding 30px 0 20px) ===== */
+/* ===== White body (original: #FFFFFF, section padding per layout) ===== */
 .product-body {
   background: #FFFFFF;
   padding: 30px 0 20px;
@@ -32,57 +32,63 @@
   max-width: 1140px;
 }
 
-/* Overview column */
-.product-intro-col {
-  padding: 0 0 10px;
-}
-
-/* h5 sub-headings — black bold like the original */
+/* h5 sub-headings — original uses <h5><strong> in #283820, theme h5 = 24px */
 .product-h5 {
-  font-family: var(--font-main);
-  font-size: 17px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
   font-weight: 700;
-  color: #000000;
-  margin: 0 0 12px;
+  line-height: 1.2;
+  color: #283820;
+  margin: 0 0 20px;
 }
 
-/* Body text + list text — #283820, Raleway 400 16px (exact original) */
+/* Body text + list text — #283820, Raleway 400 16px, body line-height 1.7778 */
 .product-overview,
 .product-list li {
-  font-family: var(--font-main);
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.7777777778;
   color: #283820;
 }
 
 .product-overview {
-  margin: 0;
+  margin: 0 0 20px;
 }
 
-/* Two-column lists (original: 50/50 columns, 10px gap) */
+/* Stacked variant: single narrow column */
+.product-stack {
+  max-width: 100%;
+}
+
+.product-block {
+  max-width: 100%;
+}
+
+/* Dotted-border columns (original uses border-style:dotted, 1px) */
 .product-lists {
   display: flex;
-  padding: 0 0 20px;
+  align-items: stretch;
 }
 
 .product-list-col {
-  width: 50%;
-  padding-right: 10px;
+  padding: 0 10px;          /* elementor-column-gap-default */
+  border: 1px dotted #D5D8DC;
+  border-radius: 0;
+}
+
+.product-list-inner {
+  height: 100%;
 }
 
 .product-list {
   list-style: disc;
-  padding-left: 20px;
-  margin: 0;
+  padding-left: 18px;
+  margin: 0 0 20px;
 }
 
 .product-list li {
-  margin-bottom: 8px;
-}
-
-.product-materials {
-  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* ===== Products sub-menu (Structural page) ===== */
@@ -164,6 +170,52 @@
   border: 0;
 }
 
+/* ===== Grouped doc previews (navy pill heading + 50/50 row) =====
+   Original: widget container bg #1F3141, margin 10px 0 15px, padding 15px,
+   h4 centered, Raleway 600, white. Section padding 50px 0 100px. */
+.product-docgroups {
+  background: #FFFFFF;
+  padding: 50px 0 100px;
+}
+
+.product-docgroups .container {
+  max-width: 1140px;
+}
+
+.product-docgroup-title {
+  background: #1F3141;
+  margin: 10px 0 15px;
+  padding: 15px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.product-docgroup.spaced .product-docgroup-title {
+  margin-top: 10px;
+}
+
+.product-docgroup-row {
+  display: flex;
+  padding: 0 15px;
+}
+
+.product-docgroup-cell {
+  width: 50%;
+  padding: 0 15px;
+}
+
+.product-docgroup-cell iframe {
+  width: 640px;
+  max-width: 100%;
+  height: 480px;
+  border: 0;
+  display: block;
+}
+
 /* ===== 404 (matches original's styled 404) ===== */
 .product-notfound {
   text-align: center;
@@ -202,9 +254,33 @@
     flex-direction: column;
   }
 
+  /* Original mobile: dotted columns stack full width */
   .product-list-col {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+
+  /* Original mobile zeroes the inner widget padding */
+  .product-list-inner {
+    padding: 0 !important;
+  }
+
+  .product-stack {
+    width: 100% !important;
+  }
+
+  .product-docgroup-row {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .product-docgroup-cell {
     width: 100%;
-    padding-right: 0;
+    padding: 0;
+  }
+
+  .product-docgroup-title {
+    font-size: 21px;
   }
 
   .product-images-grid,
