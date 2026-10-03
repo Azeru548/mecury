@@ -22,19 +22,21 @@
 .cert-inner {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 40px 20px 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
+  gap: 30px;
 }
 
-/* Image widget — column 100%, content centered (original col b3072de) */
+/* Image widget — one of three equal columns */
 .cert-image-widget {
-  width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   justify-content: center;
-  padding: 40px 40px 0;
+  padding: 0;
 }
 
 /* Original: dotted 1px border + 10px shadow + 15px bottom padding on widget */
@@ -61,7 +63,15 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 767px) {
+  .cert-inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px 0;
+    gap: 0;
+  }
+
   .cert-image-widget {
+    width: 100%;
     padding: 20px 10px 15px;
   }
 
