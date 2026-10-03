@@ -115,7 +115,13 @@
   padding: 0 10px;   /* elementor-column-gap-default */
 }
 
-/* The Drive embed sits at the top of the right-hand column */
+/* The Drive embed sits at the top of the right-hand column.
+   margin cancels the column's 10px side padding so the embed runs edge to
+   edge of its column, flush with the background-image band below it. */
+.product-video {
+  margin: 0 -10px;
+}
+
 .product-video iframe {
   display: block;
   width: 640px;
@@ -285,6 +291,17 @@
   align-items: flex-start;
 }
 
+/* Outer cells drop their 10px side padding so the first photo starts on the
+   box edge and the last one ends flush with it; the 20px inner gutters and
+   the transcribed column widths stay exactly as they are. */
+.product-image-cell:first-child {
+  padding-left: 0;
+}
+
+.product-image-cell:last-child {
+  padding-right: 0;
+}
+
 .product-image-cell {
   padding: 0 10px;
 }
@@ -342,9 +359,19 @@
   margin-top: 10px;
 }
 
+/* Row drops its own 15px gutter; the outer cells drop theirs too, so the
+   embeds start on the same edge as the box. The inner 30px gap stays. */
 .product-docgroup-row {
   display: flex;
-  padding: 0 15px;
+  padding: 0;
+}
+
+.product-docgroup-cell:first-child {
+  padding-left: 0;
+}
+
+.product-docgroup-cell:last-child {
+  padding-right: 0;
 }
 
 .product-docgroup-cell {
@@ -433,12 +460,19 @@
     font-size: 21px;
   }
 
+  /* Stacked full-width cells: no side padding, so photos run edge to edge
+     exactly as the desktop rows now do. */
   .product-image-row {
     flex-direction: column;
   }
 
   .product-image-cell {
     width: 100% !important;
+    padding: 0;
+  }
+
+  .product-video {
+    margin: 0;
   }
 
   .product-split {
