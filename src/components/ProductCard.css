@@ -78,9 +78,10 @@
   line-height: 1.5;
 }
 
+/* The two title lines share one font: the span only breaks onto its own
+   line, inheriting size, weight and family from the h3. */
 .product-card-content h3 span {
   display: block;
-  font-size: 15px;
 }
 
 .product-card-content p {
