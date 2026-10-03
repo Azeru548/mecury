@@ -15,12 +15,14 @@
   box-shadow: 0 2px 20px rgba(42, 67, 113, 0.15);
 }
 
-/* Boxed container — logo column 20%, menu column 80% (flex-start) */
+/* Boxed container — logo column 20%, menu column 80% (flex-start).
+   Stretched, not centered: the menu column fills the bar's full height so
+   the dropdown item can reach the bottom edge (see .has-dropdown). */
 .header-container {
   max-width: var(--container-max);
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 .logo {
@@ -35,12 +37,13 @@
   display: block;
 }
 
-/* Desktop Nav */
+/* Desktop Nav — no vertical padding: the column now stretches to the full
+   bar height, and the ul centers its items inside it (unchanged position). */
 .desktop-nav {
   width: 80%;
   display: flex;
   justify-content: flex-start;
-  padding: 10px 0;
+  padding: 0;
 }
 
 .desktop-nav ul {
@@ -101,8 +104,14 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
+/* The item stretches to the full bar height (top:100% on .dropdown then
+   lands on the bar's bottom edge instead of under the nav text) while its
+   label stays vertically centered exactly as before. */
 .has-dropdown {
   position: relative;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
 }
 
 .dropdown.open {
@@ -115,9 +124,9 @@
   display: block;
   padding: 7px 10px;
   color: #34373b;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 400;
   transition: all 0.2s;
 }
 
@@ -258,6 +267,7 @@
 
   .header-container {
     padding: 10px 20px;
+    align-items: center;   /* stretch is a desktop-menu concern only */
   }
 
   .logo {
