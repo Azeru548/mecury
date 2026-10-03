@@ -125,7 +125,7 @@
   padding: 7px 10px;
   color: #34373b;
   font-family: var(--font-main);
-  font-size: 18px;
+  font-size: 13px;   /* matches the nav links */
   font-weight: 400;
   transition: all 0.2s;
 }
