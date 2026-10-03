@@ -264,9 +264,12 @@
 
 /* ===== Photos =====
    Each row is its own boxed section; columns carry the original widths and
-   the 10px elementor-column-gap-default padding. */
+   the 10px elementor-column-gap-default padding. The section closes with a
+   modest white gap so the last photo row never butts straight into the
+   black footer. */
 .product-images-section {
   background: #FFFFFF;
+  padding: 0 0 40px;
 }
 
 .product-image-section-row {
